@@ -1,0 +1,3 @@
+Type-Something is a web app that allows you to record your ideas, notes or anything interesting online.
+
+Developer: BoYu (boyu2011@gmail.com)
