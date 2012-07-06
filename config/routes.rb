@@ -4,6 +4,8 @@ TypeSomething::Application.routes.draw do
   #get "static_pages/help"
   #get "static_pages/contact"
 
+  resources :users
+
   # define the named routes
   match '/home',    to: 'static_pages#home'
   match '/help',    to: 'static_pages#help'

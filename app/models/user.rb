@@ -12,6 +12,8 @@
 class User < ActiveRecord::Base
 	attr_accessible :email, :name, :password, :password_confirmation
 
+	# read this: 
+	# https://github.com/rails/rails/blob/master/activemodel/lib/active_model/secure_password.rb
 	has_secure_password
 
 	before_save { |user| user.email = email.downcase }

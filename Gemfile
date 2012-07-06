@@ -16,6 +16,11 @@ gem 'annotate', '~> 2.4.1.beta'
 
 gem 'bcrypt-ruby', '3.0.1'
 
+gem 'pry-rails', :group => :development
+
+gem 'factory_girl_rails', '1.4.0'
+
+
 
 
 
