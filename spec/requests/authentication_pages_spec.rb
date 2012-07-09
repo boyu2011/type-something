@@ -56,6 +56,7 @@ describe "AuthenticationPages" do
 	describe "authorization" do
 
 		describe "for non-signed-in users" do
+			
 			let(:user) { FactoryGirl.create(:user) }
 
 			describe "in the Users controller" do
@@ -91,10 +92,25 @@ describe "AuthenticationPages" do
 				end
 
 				describe "after signing in" do
-
 					it "should render the desired protected page" do
 						page.should  have_selector('title', text: "Edit user")
 					end
+				end
+			end
+
+			describe "in the posts controller" do
+
+				describe "submitting to the create action" do
+					before { post posts_path }
+					specify { response.should redirect_to(signin_path) }
+				end
+
+				describe "submitting to the destroy action" do
+					before do
+						delete post_path(FactoryGirl.create(:post))
+					end
+
+					specify { response.should redirect_to(signin_path) }
 				end
 			end
 		end

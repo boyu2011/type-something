@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
 	# https://github.com/rails/rails/blob/master/activemodel/lib/active_model/secure_password.rb
 	has_secure_password
 
+	has_many :posts, dependent: :destroy
+
 	before_save { |user| user.email = email.downcase }
 
 	before_save :create_remember_token
@@ -29,6 +31,10 @@ class User < ActiveRecord::Base
 	validates :password, presence: true, length: { minimum: 6 }
 
 	validates :password_confirmation, presence: true
+
+	def feed
+		posts
+	end
 
 	private
 

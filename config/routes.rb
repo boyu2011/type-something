@@ -18,6 +18,8 @@ TypeSomething::Application.routes.draw do
     # indicated that it should be invoked using an HTTP DELETE request.
     match '/signout',  to: 'sessions#destroy', via: :delete
 
+    resources :posts, only: [:create, :destroy]
+    
 
     # The priority is based upon order of creation:
     # first created -> highest priority.

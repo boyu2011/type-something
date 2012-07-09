@@ -1,6 +1,24 @@
 <% provide(:title, 'Home') %>
-<div class="center hero-unit">
-	<h2>Welcome to the Type Something App</h2>
 
-	<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
-</div>
+<% if signed_in? %>
+	<div class="row">
+		<aside class="span4">
+			<section>
+				<%= render 'shared/user_info' %>
+			</section>
+			<section>
+				<%= render'shared/post_form' %>
+			</section>
+		</aside>
+		<div class="span8">
+			<h3>Post Feed</h3>
+			<%= render 'shared/feed' %>
+		</div>
+	</div>
+<% else %>
+	<div class="center hero-unit">
+		<h2>Welcome to the Type Something App</h2>
+
+		<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+	</div>
+<% end %>

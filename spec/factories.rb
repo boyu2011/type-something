@@ -10,4 +10,9 @@ FactoryGirl.define do
 			admin true
 		end
 	end
+
+	factory :post do
+		content		"Ruby is amazing"
+		user
+	end
 end
