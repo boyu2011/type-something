@@ -2,7 +2,12 @@ TypeSomething::Application.routes.draw do
 
     root to: 'static_pages#home'
     
-    resources :users
+    resources :users do
+        # the routes respond to URIs such as /users/1/following, /users/2/followers
+        member do
+            get :following, :followers
+        end
+    end
 
     # define the named routes
     match '/home',    to: 'static_pages#home'
@@ -19,6 +24,8 @@ TypeSomething::Application.routes.draw do
     match '/signout',  to: 'sessions#destroy', via: :delete
 
     resources :posts, only: [:create, :destroy]
+
+    resources :relationships, only: [:create, :destroy]
     
 
     # The priority is based upon order of creation:

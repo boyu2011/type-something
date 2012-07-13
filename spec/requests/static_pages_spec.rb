@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "StaticPages" do
 
 	describe "Home page" do
+
 		before { visit home_path }
 
 		it "should have the h2 'Type Something App'" do
@@ -14,6 +15,7 @@ describe "StaticPages" do
 		end
 
 		describe "for signed-in users" do
+
 			let(:user) { FactoryGirl.create(:user) }
 
 			before do
@@ -27,6 +29,19 @@ describe "StaticPages" do
 				user.feed.each do |item|
 					page.should have_selector("li##{item.id}", text: item.content)
 				end
+			end
+
+			describe "following/follower counts" do
+				
+				let(:other_user) { FactoryGirl.create(:user) }
+
+				before do
+					other_user.follow!(user)
+					visit root_path
+				end
+
+				it { page.should have_link("0 following", href: following_user_path(user)) }
+				it { page.should have_link("1 followers", href: followers_user_path(user)) }
 			end
 		end
 	end
